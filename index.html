@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning.">
+  <meta name="keywords" content="Imitation Learning, Bimanual Dexterous Manipulation, Automated Data Generation, Humanoid Robots.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Zhenyu Jiang</a><sup>*1,2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Yuqi Xie</a><sup>*1,2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Kevin Lin</a><sup>*1,2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Zhenjia Xu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Weikang Wan</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="#">Ajay Mandlekar</a><sup>†1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Linxi "Jim" Fan</a><sup>†1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Yuke Zhu</a><sup>†1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>NVIDIA Research</span>
+            <span class="author-block"><sup>2</sup>UT Austin</span>
+            <span class="author-block"><sup>3</sup>UC San Diego</span>
+          </div>
+          
+          <div class="column has-text-centered">
+            <div class="is-size-4 publication-authors"> RSS 2024 </div>
+    </div>
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2405.07503"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2405.07503"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link.
+              <span class="link-block">
+                <a href="TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Aaditya-Prasad/Consistency-Policy/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <video id="teaser-left" autoplay muted controls playsinline style="width: 100%; height: 100%;">
+              <source src="./static/videos/jimmy/ctm/action/IMG_3177-4x.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered">Consistency Policy</h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content has-text-centered">
+            <video id="teaser-right" autoplay muted controls playsinline style="width: 100%; height: 100%;">
+              <source src="./static/videos/jimmy/ddim/action/IMG_2820-4x.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered">Diffusion Policy</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2 class="subtitle has-text-centered">
+      <span class="dnerf">Consistency Policy</span> accelerates Diffusion Policy for real time inference on compute constrained robotics platforms. The above videos are 4x sped up for brevity. All other videos are 1x speed.
+    </h2>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Many robotic systems, such as mobile manipulators or quadrotors, cannot be equipped with high-end GPUs due to space, weight, and power constraints. These constraints prevent these systems from leveraging recent developments in visuomotor policy architectures that require high-end GPUs to achieve fast policy inference. <strong>In this paper, we propose Consistency Policy, a faster and similarly powerful alternative to Diffusion Policy for learning visuomotor robot control.</strong>
+          </p>
+          <p>
+            By virtue of its fast inference speed, Consistency Policy can enable low latency decision making in resource-constrained robotic setups. A Consistency Policy is distilled from a pretrained Diffusion Policy by enforcing self-consistency along the Diffusion Policy's learned trajectories. We compare Consistency Policy with Diffusion Policy and other related speed-up methods across 6 simulation tasks as well as two real-world tasks in which we demonstrate inference on a laptop GPU. For all these tasks, Consistency Policy speeds up inference by an order of magnitude compared to the fastest alternative method and maintains competitive success rates. 
+          </p>
+          <p>
+            We also show that the Conistency Policy training procedure is robust to the pretrained Diffusion Policy's quality, a useful result that helps practioners avoid extensive testing of the pretrained model. Key design decisions that enabled this performance are the choice of consistency objective, reduced initial sample variance, and the choice of preset chaining steps. </p> 
+          </p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-four-fifths"> -->
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+        border-radius: 8px; will-change: transform;">
+         <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+           src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGDe-P2064&#x2F;JIEI2eI99lWTmN5NniZkYQ&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+         </iframe>
+
+      <!-- </div> -->
+    </div>
+    
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+          <h2 class="title is-3">Real World Experiments</h2>
+      </div>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="column is-full">
+          <h3 class="subtitle" style="font-size: 1.5rem; font-weight: normal;">Trash Clean Up</h3>
+      </div>
+    </div>
+    <div class="columns is-centered">
+        <!-- Visual Effects. -->
+        <div class="column">
+          <div class="content has-text-centered">
+            <video id="trash-cp" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/trash-cp-collage.mp4" type="video/mp4">
+                </video>
+                <h4 class="subtitle" style="font-size: 1.3rem; font-weight: normal; margin-top: 0.5rem;">Consistency Policy</h4>
+            </div>
+        </div>
+        <div class="column">
+          <div class="content has-text-centered">
+            <video id="trash-ddim" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/trash-ddim-collage.mp4" type="video/mp4">
+                </video>
+                <h4 class="subtitle" style="font-size: 1.3rem; font-weight: normal; margin-top: 0.5rem;">Diffusion Policy</h4>
+            </div>
+        </div>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="column is-full">
+          <h3 class="subtitle" style="font-size: 1.5rem; font-weight: normal;">Plug Insertion</h3>
+      </div>
+    </div>
+    <div class="columns is-centered">
+        <!-- Visual Effects. -->
+        <div class="column">
+          <div class="content has-text-centered">
+            <video id="trash-cp" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/ctm-insertion-collage.mp4" type="video/mp4">
+                </video>
+                <h4 class="subtitle" style="font-size: 1.3rem; font-weight: normal; margin-top: 0.5rem;">Consistency Policy</h4>
+            </div>
+        </div>
+        <div class="column">
+          <div class="content has-text-centered">
+            <video id="trash-ddim" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/ddim-insertion-collage.mp4" type="video/mp4">
+                </video>
+                <h4 class="subtitle" style="font-size: 1.3rem; font-weight: normal; margin-top: 0.5rem;">Diffusion Policy</h4>
+            </div>
+        </div>
+    </div>
+    
+  
+    <!-- Animation. -->
+    <div class="columns is-centered" style="margin-top: 60px;">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Simulation experiments</h2>
+
+        <!-- Interpolating. -->
+        <div class="content has-text-justified">
+          <p>
+            We test 6 different simulation tasks across the Robomimic, Franka Kitchen, and Push-T benchmarks. We compare Consistency Policy with Diffusion Policy and other related speed-up methods. 
+          </p>
+        </div>					
+          <div class="box alt" style="margin-bottom: 1em;">
+            <!-- Row 1 -->
+            <div class="row 50% uniform" style="width: 100%; display: flex;">
+              <div class="2u" style="flex: 1; padding: 5px; box-sizing: border-box;">
+                <span class="image fit">
+                  <video autoplay loop muted playsinline style="width: 100%;"><source src="static/videos/lift.mp4" type="video/mp4"> </video>
+                </span>
+                Lift 
+              </div>
+              <div class="2u" style="flex: 1; padding: 5px; box-sizing: border-box;">
+                <span class="image fit">
+                  <video autoplay loop muted playsinline style="width: 100%;"><source src="static/videos/can.mp4" type="video/mp4"> </video>
+                </span>
+                Can 
+              </div>
+              <div class="2u" style="flex: 1; padding: 5px; box-sizing: border-box;">
+                <span class="image fit">
+                  <video autoplay loop muted playsinline style="width: 100%;"><source src="static/videos/square.mp4" type="video/mp4"> </video>
+                </span>
+                Square 
+              </div>
+            </div>
+            <!-- Row 2 -->
+            <div class="row 50% uniform" style="width: 100%; display: flex;">
+              <div class="2u" style="flex: 1; padding: 5px; box-sizing: border-box;">
+                <span class="image fit">
+                  <video autoplay loop muted playsinline style="width: 100%;"><source src="static/videos/tool_hang.mp4" type="video/mp4"> </video>
+                </span>
+                Tool Hang 
+              </div>
+              <div class="2u" style="flex: 1; padding: 5px; box-sizing: border-box;">
+                <span class="image fit">
+                  <video autoplay loop muted playsinline style="width: 100%;"><source src="static/videos/pusht.mp4" type="video/mp4"> </video>
+                </span>
+                Push-T
+              </div>
+              <div class="2u" style="flex: 1; padding: 5px; box-sizing: border-box;">
+                <span class="image fit">
+                  <video autoplay loop muted playsinline style="width: 100%;"><source src="static/videos/kitchen.mp4" type="video/mp4"> </video>
+                </span>
+                Franka Kitchen 
+              </div>
+            </div>
+          </div>
+          <br/>
+          
+        <!--/ Interpolating. -->
+
+      </div>
+    </div>
+    <div class="columns is-centered is-vcentered is-multiline">
+      <!-- Methods Heading -->
+      <div class="column is-12">
+          <h2 class="title is-3">Methods</h2>
+      </div>
+      <div class="columns is-mobile is-multiline">
+        <!-- First content block: Text on the left, Image on the right -->
+        <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
+          <div class="box">
+            <p>Both Diffusion and Consistency Policy work by sampling random actions and denoising them into action predictions. <strong>Diffusion Policy</strong> denoises an action sequence over many steps, resulting in high inference costs. <strong>Consistency Policy</strong> generates an action sequence in a single step.</p>
+          </div>
+        </div>
+        <div class="column is-full-mobile is-half-tablet is-two-thirds-desktop">
+          <div class="box">
+            <img src="static/images/c_p_teaser.png" alt="Diffusion Policy" style="width: 100%;">
+          </div>
+        </div>
+      
+        <!-- Second content block: Image on the left, Text on the right -->
+        <div class="column is-full-mobile is-half-tablet is-two-thirds-desktop">
+          <div class="box">
+            <img src="static/images/ctm_obj.png" alt="Consistency Policy" style="width: 100%;">
+          </div>
+        </div>
+        <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
+          <div class="box">
+            <p>We distill with the CTM objective, which enforces self-consistency along a PFODE (<span style="color:black;">black</span>) by sampling points <em>s</em>, <em>u</em>, <em>t</em> in time, denoising from <em>t → u</em> with a teacher model under stopgrad (<span style="color:green;">green</span>), denoising from <em>t → s</em> with the student model (<span style="color:blue;">blue</span>), and denoising <em>u → s</em> with the student model under stopgrad (<span style="color:orange;">orange</span>). We then use the stopgrad student model to take both generated positions at time <em>s</em> back to time 0. The difference between these two final generations is the computed loss, <span style="color:red;">L<sub>CTM</sub></span> (<span style="color:red;">red</span>). 
+              <br><br>
+              In our experiments, we found <em>u = t − 1</em> and <em>s</em> arbitrary below <em>u</em> to work best.
+            </p>
+          </div>
+        </div>
+      </div>
+  
+    
+    
+    
+
+
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div> 
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{prasad2024consistency,
+      title     = {Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation},
+      author    = {Prasad, Aaditya and Lin, Kevin and Wu, Jimmy and Zhou, Linqi and Bohg, Jeannette},
+      booktitle = {Robotics: Science and Systems},
+      year      = {2024},
+    }
+    </code></pre>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgements">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    <p>This work was supported in part by the Toyota Research Institute, and was completed at IPRL lab. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies, either expressed or implied, of the sponsers.</p>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgements">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Contact</h2>
+    <p>If you have any questions, please feel free to contact <a href="mailto:aadityap@stanford.edu">Aaditya Prasad</a>.</p>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/Aaditya-Prasad" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from <a href="https://nerfies.github.io/">NeRFies</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
